@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 import "./styles.css";
 
 // ─── NAV ──────────────────────────────────────────────────────────────────────
@@ -12,15 +12,14 @@ function Nav({ page, setPage }) {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  const links = ["Home", "About", "Classes", "Gallery", "Contact"];
+  const links = ["Home", "About", "Classes", "Events", "Contact"];
 
   return (
     <nav className={`nav ${scrolled ? "nav--scrolled" : ""}`}>
       <button className="nav__logo" onClick={() => setPage("Home")}>
-        <span className="nav__logo-thai">ดารา</span>
-        <span className="nav__logo-en">Dara Thai Dancing</span>
+        <span className="nav__logo-thai">ดารานาฏศิลป์ไทย</span>
+        <span className="nav__logo-en">Dara Thai Dancing School</span>
       </button>
-
       <ul className={`nav__links ${open ? "nav__links--open" : ""}`}>
         {links.map((l) => (
           <li key={l}>
@@ -33,7 +32,6 @@ function Nav({ page, setPage }) {
           </li>
         ))}
       </ul>
-
       <button className="nav__burger" onClick={() => setOpen(!open)} aria-label="Menu">
         <span /><span /><span />
       </button>
@@ -51,20 +49,20 @@ function Home({ setPage }) {
           <div className="hero__glow" />
         </div>
         <div className="hero__content">
-          <p className="hero__eyebrow">✦ The Art of Thai Classical Dance ✦</p>
+          <p className="hero__eyebrow">✦ ร่วมสืบสานวัฒนธรรมไทย ✦</p>
           <h1 className="hero__title">
-            <span>Where</span>
-            <em>Grace</em>
-            <span>Becomes</span>
-            <em>Art</em>
+            <span>Preserving</span>
+            <em>Thai Culture</em>
+            <span>Through Dance</span>
           </h1>
           <p className="hero__sub">
-            Discover the ancient elegance of Thai classical dance in Perth, Western Australia.
-            Taught with heart, performed with soul.
+            Perth's vibrant Thai dance school — led by <strong>Kru Ploy</strong>, sharing the beauty and grace
+            of Thailand's traditional, folk, and contemporary dance with all ages and abilities
+            in Maddington, Western Australia.
           </p>
           <div className="hero__ctas">
             <button className="btn btn--gold" onClick={() => setPage("Classes")}>
-              Explore Classes
+              Join a Class
             </button>
             <button className="btn btn--ghost" onClick={() => setPage("About")}>
               Our Story
@@ -77,14 +75,13 @@ function Home({ setPage }) {
         </div>
       </section>
 
-      {/* Features */}
       <section className="features">
         <div className="features__grid">
           {[
-            { icon: "🌸", title: "Classical Technique", desc: "Rooted in centuries of Ramakien tradition, every movement tells a story." },
-            { icon: "🏆", title: "Performance Ready", desc: "Train for festivals, cultural events, and professional stage performances." },
-            { icon: "👶", title: "All Ages Welcome", desc: "Programs for children from age 5 through to adult beginners and advanced dancers." },
-            { icon: "🎭", title: "Cultural Immersion", desc: "Learn the history, music, and spiritual meaning behind each gesture and posture." },
+            { icon: "🌸", title: "Traditional Thai Dance", desc: "Elegant and intricate traditional forms passed down through generations of Thai artistic heritage." },
+            { icon: "🎊", title: "Folk & Contemporary", desc: "Vibrant folk rhythms and expressive contemporary Thai styles for a full cultural education." },
+            { icon: "🌏", title: "All Ages & Abilities", desc: "From young children to adults — no prior experience needed. Everyone is welcome here." },
+            { icon: "🎭", title: "Perform & Celebrate", desc: "Workshops, cultural festivals, and performances across Western Australia throughout the year." },
           ].map((f) => (
             <div className="feature-card" key={f.title}>
               <div className="feature-card__icon">{f.icon}</div>
@@ -95,23 +92,33 @@ function Home({ setPage }) {
         </div>
       </section>
 
-      {/* Quote Banner */}
       <section className="quote-banner">
         <div className="quote-banner__inner">
           <div className="quote-banner__ornament">❋</div>
           <blockquote>
-            "Thai dance is not just movement — it is prayer made visible, history made alive."
+            "Nurturing and inspiring dancers of all ages and abilities — preserving Thai cultural heritage in the heart of Western Australia."
           </blockquote>
-          <cite>— Kru Dara, Founder</cite>
+          <cite>— Dara Thai Dancing School, ดารานาฏศิลป์ไทย</cite>
         </div>
       </section>
 
-      {/* CTA Strip */}
+      <section className="social-strip">
+        <div className="social-strip__inner">
+          <div className="social-strip__text">
+            <p className="social-strip__label">Follow us on Facebook</p>
+            <p className="social-strip__handle">@darathaidancing · 1,100+ followers</p>
+          </div>
+          <a href="https://www.facebook.com/darathaidancing" target="_blank" rel="noopener noreferrer" className="btn btn--gold">
+            Visit Our Facebook Page →
+          </a>
+        </div>
+      </section>
+
       <section className="cta-strip">
-        <h2>Begin Your Journey</h2>
-        <p>Trial classes available every term. No experience necessary.</p>
+        <h2>ร่วมเป็นส่วนหนึ่งของเรา</h2>
+        <p>Join our community and help preserve Thai culture in Perth.</p>
         <button className="btn btn--gold" onClick={() => setPage("Contact")}>
-          Book a Trial Class →
+          Get in Touch →
         </button>
       </section>
     </main>
@@ -125,36 +132,97 @@ function About() {
       <header className="page-header">
         <div className="page-header__ornament">✦</div>
         <h1>Our Story</h1>
-        <p>A legacy woven in gold thread and devotion</p>
+        <p>ดารานาฏศิลป์ไทย — Born from love of Thai culture</p>
       </header>
 
       <section className="about__story">
         <div className="about__image-wrap">
           <div className="about__image-placeholder">
-            <span className="about__thai-symbol">ระบำ</span>
-            <p>Thai Dance</p>
+            <span className="about__thai-symbol">นาฏศิลป์</span>
+            <p>Thai Traditional Arts</p>
           </div>
           <div className="about__image-frame" />
         </div>
         <div className="about__text">
-          <h2>From Bangkok to Perth</h2>
+          <h2>Bringing Thailand to Perth</h2>
           <p>
-            Dara Thai Dancing was founded in 2008 by Kru Dara Supasiri, a classically trained dancer
-            from the prestigious Bunditpatanasilpa Institute in Bangkok, Thailand. Arriving in Perth
-            with a heart full of passion and a suitcase of costumes, she set about building a home
-            for Thai classical dance in Western Australia.
+            Dara Thai Dancing School (ดารานาฏศิลป์ไทย) was established in 2019 with a clear and
+            heartfelt vision: to embrace and share the rich cultural heritage of Thailand through
+            the art of dance right here in Western Australia.
           </p>
           <p>
-            What began as a small class of eight students in a community hall has grown into one of
-            Perth's most celebrated cultural dance schools — nurturing hundreds of students across
-            every age group, from tiny five-year-olds enchanted by the glittering headdresses to
-            adults discovering a new creative world.
+            Based in Maddington, Perth, the school has grown into a prominent and respected
+            institution — nurturing and inspiring dancers of all ages and abilities, from
+            young children taking their very first steps to adults discovering a lifelong passion.
           </p>
           <p>
-            Every class at Dara Thai Dancing honours the deep spiritual and artistic heritage of
-            Thailand's royal court dances — Khon, Lakhon, and Fawn Thai — while making them
-            accessible, joyful, and alive for a new generation.
+            Our highly experienced and passionate instructors are accredited Thai dramatic art
+            teachers, dedicated to sharing the beauty and grace of Thai dance with the local
+            community. We teach Thai dance to all — no experience, no Thai background needed.
           </p>
+          <p className="about__thai-tagline">
+            #ร่วมสืบสานวัฒนธรรมไทย — Preserving Thai Culture Together
+          </p>
+        </div>
+      </section>
+
+      {/* Kru Section */}
+      <section className="kru-section">
+        <div className="kru-section__inner">
+          <div className="kru-card kru-card--lead">
+            <div className="kru-card__avatar">
+              <span>ครู</span>
+              <div className="kru-card__avatar-ring" />
+            </div>
+            <div className="kru-card__body">
+              <div className="kru-card__role">Led by</div>
+              <h2 className="kru-card__name">Kru Ploy</h2>
+              <p className="kru-card__thai">ครูพลอย</p>
+              <p className="kru-card__bio">
+                Kru Ploy is the heart and lead teacher of Dara Thai Dancing School — bringing
+                warmth, dedication, and deep expertise to every class. With a passion for making
+                traditional Thai dance accessible and joyful, Kru Ploy guides students of all
+                ages with patience, encouragement, and a commitment to preserving Thailand's
+                rich dance heritage here in Perth.
+              </p>
+            </div>
+          </div>
+
+          <div className="kru-card kru-card--inspired">
+            <div className="kru-card__avatar kru-card__avatar--small">
+              <span>ครู</span>
+            </div>
+            <div className="kru-card__body">
+              <div className="kru-card__role">Inspired by</div>
+              <h2 className="kru-card__name">Kru Dang</h2>
+              <p className="kru-card__thai">ครูแดง · Mother & Grandmother</p>
+              <p className="kru-card__bio">
+                The spirit and soul of Dara Thai Dancing School flows from <strong>Kru Dang</strong> —
+                Kru Ploy's mother and grandmother, whose lifelong love of Thai traditional dance
+                inspired this school's very existence. Kru Dang's devotion to preserving Thailand's
+                dance traditions is the foundation upon which everything here is built. Her legacy
+                lives in every movement, every student, every performance.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="dance-styles">
+        <h2 className="values__heading">What We Teach</h2>
+        <div className="styles__grid">
+          {[
+            { icon: "👑", title: "Traditional Thai Dance", thai: "นาฏศิลป์ไทยดั้งเดิม", desc: "Elegant and intricate movements rooted in Thailand's royal court and cultural traditions. Every hand gesture, every posture carries deep meaning passed down through centuries." },
+            { icon: "🎉", title: "Thai Folk Dance", thai: "รำพื้นบ้าน", desc: "Vibrant, energetic, and joyful — folk dances from across Thailand's regions celebrate community, harvest, and everyday life with colour and infectious rhythm." },
+            { icon: "🌟", title: "Contemporary Thai Dance", thai: "นาฏศิลป์ไทยร่วมสมัย", desc: "Dynamic and expressive, blending traditional Thai aesthetics with modern movement language for today's performers and creative dancers." },
+          ].map((s) => (
+            <div className="style-card" key={s.title}>
+              <div className="style-card__icon">{s.icon}</div>
+              <div className="style-card__thai">{s.thai}</div>
+              <h3>{s.title}</h3>
+              <p>{s.desc}</p>
+            </div>
+          ))}
         </div>
       </section>
 
@@ -162,12 +230,12 @@ function About() {
         <h2 className="values__heading">What We Stand For</h2>
         <div className="values__grid">
           {[
-            { title: "Respect for Tradition", icon: "🙏", desc: "We teach the authentic forms, gestures, and stories exactly as they have been passed down through generations." },
-            { title: "Community & Belonging", icon: "💛", desc: "Our school is a family. Students support each other, celebrate together, and grow as artists and people." },
-            { title: "Excellence", icon: "⭐", desc: "We hold high standards — not to intimidate, but because we believe every student is capable of greatness." },
-            { title: "Cultural Pride", icon: "🇹🇭", desc: "We celebrate Thai culture and share it generously with our broader Perth community." },
-            { title: "Joy in Movement", icon: "🎶", desc: "Dance should be a delight. We teach rigour alongside warmth, discipline alongside play." },
-            { title: "Inclusivity", icon: "🌏", desc: "Thai dance is for everyone. You do not need Thai heritage or prior experience — only an open heart." },
+            { title: "Cultural Preservation", icon: "🙏", desc: "We are proud keepers of Thai dance tradition — keeping these art forms alive and thriving in Western Australia." },
+            { title: "Warm & Inclusive", icon: "💛", desc: "Our school is a welcoming family. No Thai background or prior experience required — only an open heart." },
+            { title: "Community Connection", icon: "🌏", desc: "We actively participate in Perth's multicultural community, performing at festivals and events across WA." },
+            { title: "Accredited Teaching", icon: "⭐", desc: "All instructors are accredited in Thai dramatic arts, trained to the highest standards of dance education." },
+            { title: "Joy of Dancing", icon: "🎶", desc: "Whether your goal is performance, fitness, or simply fun — dancing at Dara brings happiness." },
+            { title: "Cultural Pride", icon: "🇹🇭", desc: "We celebrate Thai culture with deep pride and share it generously with our entire Perth community." },
           ].map((v) => (
             <div className="value-card" key={v.title}>
               <div className="value-card__icon">{v.icon}</div>
@@ -175,25 +243,6 @@ function About() {
               <p>{v.desc}</p>
             </div>
           ))}
-        </div>
-      </section>
-
-      <section className="team">
-        <h2>Meet Kru Dara</h2>
-        <div className="team__card">
-          <div className="team__avatar">
-            <span>กรู</span>
-          </div>
-          <div className="team__bio">
-            <h3>Kru Dara Supasiri</h3>
-            <p className="team__title">Founder & Principal Teacher</p>
-            <p>
-              Trained at the Bunditpatanasilpa Institute, Bangkok · 30+ years experience ·
-              Graduate of Thailand's National College of the Arts · Recipient of the Thai
-              Cultural Excellence Award 2019 · Performed at the Thai Royal Court Cultural
-              Exchange Program.
-            </p>
-          </div>
         </div>
       </section>
     </main>
@@ -204,40 +253,36 @@ function About() {
 function Classes({ setPage }) {
   const classes = [
     {
-      level: "Little Dancers",
-      age: "Ages 5–8",
-      tag: "Beginners",
+      level: "Children's Classes",
+      age: "All ages welcome",
+      tag: "Traditional · Folk · Contemporary",
       color: "pink",
-      desc: "An enchanting introduction to Thai classical dance through movement, music, and storytelling. Children learn basic hand gestures (natasin), footwork, and perform in end-of-year showcases.",
-      days: "Saturday 9:00am – 10:00am",
-      fee: "$25 / class · $85 / term",
+      desc: "An enchanting introduction to traditional Thai and folk dance for children. Kids develop coordination, confidence, and a love of Thai culture through movement, music, and storytelling. Performance opportunities throughout the year.",
+      note: "Message us on Facebook for current schedule",
     },
     {
-      level: "Junior Classical",
-      age: "Ages 9–14",
-      tag: "Foundation",
+      level: "Teen & Youth",
+      age: "Teenagers",
+      tag: "Traditional · Folk · Contemporary",
       color: "teal",
-      desc: "Students deepen their understanding of Fawn Thai and begin exploring Lakhon form. Emphasis on posture, expression, and musicality. Regular performance opportunities.",
-      days: "Saturday 10:15am – 11:45am",
-      fee: "$30 / class · $110 / term",
+      desc: "Building on foundations with deeper traditional technique, expressive folk repertoire, and contemporary Thai styles. Students perform at showcases and community cultural events across Perth.",
+      note: "Message us on Facebook for current schedule",
     },
     {
-      level: "Senior Classical",
-      age: "Ages 15+",
-      tag: "Intermediate–Advanced",
+      level: "Adult Classes",
+      age: "Adults — all levels",
+      tag: "All Styles",
       color: "gold",
-      desc: "Full classical curriculum covering Khon, Lakhon, and Fawn Thai. Students work toward performance grades and cultural exchange programs. Costume and stage training included.",
-      days: "Saturday 12:00pm – 2:00pm · Wednesday 6:30pm – 8:00pm",
-      fee: "$35 / class · $130 / term",
+      desc: "Never danced before? Perfect. Our adult classes welcome complete beginners through to experienced dancers. Learn traditional Thai dance in a warm, supportive environment with no pressure.",
+      note: "Message us on Facebook for current schedule",
     },
     {
-      level: "Adult Beginners",
-      age: "18+",
-      tag: "All Levels",
+      level: "Cultural Workshops",
+      age: "Open to all",
+      tag: "Special Events",
       color: "ruby",
-      desc: "Never danced before? Perfect. This warm, supportive class introduces adults to the beauty of Thai classical movement with no pressure and plenty of encouragement.",
-      days: "Wednesday 7:00pm – 8:30pm",
-      fee: "$30 / class · $100 / term",
+      desc: "Intensive cultural workshops combining Thai dance, music, and traditions. We have hosted workshops across WA including at Karratha's Red Earth Arts Precinct. Watch Facebook for upcoming events.",
+      note: "Follow Facebook for upcoming dates",
     },
   ];
 
@@ -246,8 +291,17 @@ function Classes({ setPage }) {
       <header className="page-header">
         <div className="page-header__ornament">✦</div>
         <h1>Our Classes</h1>
-        <p>Every student. Every age. Every dream.</p>
+        <p>นาฏศิลป์ไทย — For every age, every background, every dream</p>
       </header>
+
+      <div className="classes__intro">
+        <p>
+          We offer traditional Thai dance, folk dance, and contemporary Thai dance for children,
+          teenagers, and adults — led by <strong>Kru Ploy</strong>, inspired by the legacy of <strong>Kru Dang</strong>.
+          Our accredited teachers create a warm and inclusive space where creativity and cultural
+          pride flourish. <strong>All ages. All abilities. All welcome.</strong>
+        </p>
+      </div>
 
       <section className="classes__grid">
         {classes.map((c) => (
@@ -259,11 +313,7 @@ function Classes({ setPage }) {
             <div className="class-card__details">
               <div className="class-card__detail">
                 <span className="class-card__detail-label">Schedule</span>
-                <span>{c.days}</span>
-              </div>
-              <div className="class-card__detail">
-                <span className="class-card__detail-label">Fees</span>
-                <span>{c.fee}</span>
+                <span>{c.note}</span>
               </div>
             </div>
             <button className="btn btn--gold" onClick={() => setPage("Contact")}>
@@ -274,46 +324,45 @@ function Classes({ setPage }) {
       </section>
 
       <section className="trial-banner">
-        <h2>✨ First Class Free ✨</h2>
-        <p>All new students are welcome to attend one complimentary trial class before enrolling.</p>
-        <button className="btn btn--ghost" onClick={() => setPage("Contact")}>
-          Book Your Free Trial
-        </button>
+        <h2>✨ ทุกเพศทุกวัย — All Are Welcome ✨</h2>
+        <p>No Thai heritage or prior experience required — just a love of culture and movement.</p>
+        <a href="https://www.facebook.com/darathaidancing" target="_blank" rel="noopener noreferrer" className="btn btn--ghost">
+          Message Us on Facebook
+        </a>
       </section>
     </main>
   );
 }
 
-// ─── GALLERY ──────────────────────────────────────────────────────────────────
-function Gallery() {
-  const items = [
-    { label: "Fawn Leb — Fingernail Dance", emoji: "💅", desc: "The iconic golden fingernail extensions trace elegant arcs through the air." },
-    { label: "Khon Mask Dance", emoji: "🎭", desc: "Elaborate lacquered masks and brocade costumes recreate scenes from the Ramakien epic." },
-    { label: "Lakhon Nai", emoji: "🌸", desc: "The refined inner-court dance form, once performed exclusively for royalty." },
-    { label: "Fawn Thai — Northern Style", emoji: "🕯️", desc: "Candle dances from Chiang Mai, flickering light echoing through graceful fingers." },
-    { label: "Wai Kru Ceremony", emoji: "🙏", desc: "The ritual teacher-honouring ceremony that opens every performance season." },
-    { label: "End of Year Showcase", emoji: "🌟", desc: "Our annual gala performance where every student shines on a professional stage." },
-    { label: "Costume Workshop", emoji: "👑", desc: "Students learn to wear and care for traditional silk costumes and headdresses." },
-    { label: "Cultural Festival", emoji: "🎊", desc: "Dara Thai Dancing performs at the annual Perth Thai Festival each April." },
-    { label: "Advanced Ensemble", emoji: "🎵", desc: "Our senior ensemble, performing with live piphat musicians." },
+// ─── EVENTS ───────────────────────────────────────────────────────────────────
+function Events() {
+  const events = [
+    { emoji: "🎊", title: "Thailand Fun Fair — Perth", date: "Annual · Perth, WA", desc: "Dara Thai Dancing School is a proud organiser and performer at Perth's Thailand Fun Fair — bringing authentic Thai dance, culture, food, and community celebration to all of Perth.", tag: "Community Festival" },
+    { emoji: "🎭", title: "Culture & Dance Workshop — Karratha", date: "October 2024 · Red Earth Arts Precinct", desc: "A two-day intensive cultural workshop at the Red Earth Arts Precinct in Karratha, held with the Northwest Multicultural Association WA Inc. Celebrating Thai dance, music, and culture with the Pilbara community.", tag: "Cultural Workshop" },
+    { emoji: "🌟", title: "End of Year Student Showcase", date: "Annual · Perth", desc: "Our much-loved annual showcase where every student takes to the stage to celebrate their year of learning — dressed in beautiful traditional Thai costumes and performing for family and friends.", tag: "Student Showcase" },
+    { emoji: "🙏", title: "Cultural Performances Across WA", date: "Throughout the year", desc: "The school regularly performs at multicultural events, community festivals, and cultural celebrations across Western Australia — spreading the joy and beauty of Thai dance wherever we go.", tag: "Performance" },
+    { emoji: "💃", title: "Regular Classes — Maddington", date: "Ongoing · Maddington, Perth", desc: "Weekly classes in Maddington, Perth. A nurturing space where students of all ages develop their skills, make lifelong friends, and deepen their love of Thai culture.", tag: "Weekly Classes" },
+    { emoji: "🤝", title: "Multicultural Community Partnerships", date: "Various · WA", desc: "Dara Thai Dancing School actively partners with multicultural organisations across WA to bring Thai culture to communities throughout the state and foster cultural understanding.", tag: "Community Outreach" },
   ];
 
   return (
     <main className="page gallery">
       <header className="page-header">
         <div className="page-header__ornament">✦</div>
-        <h1>Gallery</h1>
-        <p>Glimpses of grace, colour, and devotion</p>
+        <h1>Events & Performances</h1>
+        <p>Bringing Thai culture to life across Western Australia</p>
       </header>
 
       <div className="gallery__grid">
-        {items.map((item, i) => (
-          <div className={`gallery-item gallery-item--${(i % 3) + 1}`} key={item.label}>
+        {events.map((ev, i) => (
+          <div className={`gallery-item gallery-item--${(i % 3) + 1}`} key={ev.title}>
             <div className="gallery-item__inner">
-              <div className="gallery-item__emoji">{item.emoji}</div>
+              <div className="gallery-item__emoji">{ev.emoji}</div>
+              <div className="gallery-item__tag-top">{ev.tag}</div>
               <div className="gallery-item__overlay">
-                <h3>{item.label}</h3>
-                <p>{item.desc}</p>
+                <div className="gallery-item__date">{ev.date}</div>
+                <h3>{ev.title}</h3>
+                <p>{ev.desc}</p>
               </div>
             </div>
           </div>
@@ -321,7 +370,10 @@ function Gallery() {
       </div>
 
       <div className="gallery__cta">
-        <p>Follow our journey on Instagram <strong>@DaraThaîDancing</strong></p>
+        <p>Follow <strong>@darathaidancing</strong> on Facebook for upcoming events and performances.</p>
+        <a href="https://www.facebook.com/darathaidancing" target="_blank" rel="noopener noreferrer" className="btn btn--gold" style={{ display: "inline-block", marginTop: "1rem" }}>
+          Follow on Facebook →
+        </a>
       </div>
     </main>
   );
@@ -333,17 +385,14 @@ function Contact() {
   const [sent, setSent] = useState(false);
 
   const handleChange = (e) => setForm({ ...form, [e.target.name]: e.target.value });
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    setSent(true);
-  };
+  const handleSubmit = (e) => { e.preventDefault(); setSent(true); };
 
   return (
     <main className="page contact">
       <header className="page-header">
         <div className="page-header__ornament">✦</div>
         <h1>Get in Touch</h1>
-        <p>We'd love to welcome you to our family</p>
+        <p>We'd love to welcome you into our community</p>
       </header>
 
       <div className="contact__layout">
@@ -351,10 +400,11 @@ function Contact() {
           <h2>Find Us</h2>
           <div className="contact__details">
             {[
-              { icon: "📍", label: "Studio Location", val: "12 Lotus Lane, Northbridge WA 6003" },
-              { icon: "📞", label: "Phone", val: "(08) 9200 0000" },
-              { icon: "✉️", label: "Email", val: "hello@darathai.com.au" },
-              { icon: "🕐", label: "Office Hours", val: "Tue–Sat, 9am – 6pm" },
+              { icon: "📍", label: "Location", val: "Maddington, Perth, Western Australia" },
+              { icon: "🇹🇭", label: "School Name (Thai)", val: "ดารานาฏศิลป์ไทย" },
+              { icon: "📘", label: "Facebook", val: "facebook.com/darathaidancing" },
+              { icon: "👩‍🏫", label: "Teachers", val: "Accredited Thai dramatic art instructors" },
+              { icon: "📅", label: "Established", val: "2019" },
             ].map((d) => (
               <div className="contact__detail" key={d.label}>
                 <span className="contact__detail-icon">{d.icon}</span>
@@ -367,12 +417,18 @@ function Contact() {
           </div>
 
           <div className="contact__social">
-            <h3>Follow Us</h3>
-            <div className="contact__social-links">
-              <a href="#" className="social-btn">Facebook</a>
-              <a href="#" className="social-btn">Instagram</a>
-              <a href="#" className="social-btn">YouTube</a>
-            </div>
+            <h3>Reach Us On Facebook</h3>
+            <p style={{ fontSize: "0.9rem", color: "var(--text-light)", marginBottom: "1rem", fontStyle: "italic" }}>
+              The quickest way to reach us and stay updated on classes and events.
+            </p>
+            <a href="https://www.facebook.com/darathaidancing" target="_blank" rel="noopener noreferrer" className="btn btn--gold" style={{ display: "inline-block" }}>
+              📘 Message Us on Facebook
+            </a>
+          </div>
+
+          <div className="contact__tagline">
+            <p>ร่วมสืบสานวัฒนธรรมไทยในต่างแดนไปกับเรา</p>
+            <span>Preserve Thai culture abroad — join us</span>
           </div>
         </div>
 
@@ -380,8 +436,14 @@ function Contact() {
           {sent ? (
             <div className="contact__success">
               <div className="contact__success-icon">🌸</div>
-              <h2>Khob Khun Mak!</h2>
-              <p>Thank you for reaching out. Kru Dara will be in touch within 1–2 business days.</p>
+              <h2>ขอบคุณมาก!</h2>
+              <p>Thank you for your message. We will be in touch with you soon.</p>
+              <p style={{ marginTop: "1rem" }}>
+                You can also reach us directly on{" "}
+                <a href="https://www.facebook.com/darathaidancing" target="_blank" rel="noopener noreferrer" style={{ color: "var(--gold)" }}>
+                  Facebook @darathaidancing
+                </a>.
+              </p>
             </div>
           ) : (
             <form className="contact__form" onSubmit={handleSubmit}>
@@ -399,27 +461,26 @@ function Contact() {
               <div className="form-row">
                 <div className="form-group">
                   <label>Phone</label>
-                  <input name="phone" value={form.phone} onChange={handleChange} placeholder="(08) xxxx xxxx" />
+                  <input name="phone" value={form.phone} onChange={handleChange} placeholder="04xx xxx xxx" />
                 </div>
                 <div className="form-group">
                   <label>Interested In</label>
                   <select name="interest" value={form.interest} onChange={handleChange}>
-                    <option value="">Select a class...</option>
-                    <option>Little Dancers (Ages 5–8)</option>
-                    <option>Junior Classical (Ages 9–14)</option>
-                    <option>Senior Classical (Ages 15+)</option>
-                    <option>Adult Beginners</option>
+                    <option value="">Select...</option>
+                    <option>Children's Classes</option>
+                    <option>Teen & Youth Classes</option>
+                    <option>Adult Classes</option>
+                    <option>Cultural Workshop</option>
+                    <option>Performance / Event Booking</option>
                     <option>General Enquiry</option>
                   </select>
                 </div>
               </div>
               <div className="form-group">
                 <label>Message</label>
-                <textarea name="message" value={form.message} onChange={handleChange} rows={5} placeholder="Tell us a little about yourself or your child..." />
+                <textarea name="message" value={form.message} onChange={handleChange} rows={5} placeholder="Tell us about yourself or ask us anything..." />
               </div>
-              <button type="submit" className="btn btn--gold btn--full">
-                Send Message ✦
-              </button>
+              <button type="submit" className="btn btn--gold btn--full">Send Message ✦</button>
             </form>
           )}
         </div>
@@ -434,17 +495,22 @@ function Footer({ setPage }) {
     <footer className="footer">
       <div className="footer__inner">
         <div className="footer__brand">
-          <span className="footer__thai">ดารา</span>
-          <p>Dara Thai Dancing</p>
-          <p className="footer__tagline">Perth, Western Australia</p>
+          <span className="footer__thai">ดารานาฏศิลป์ไทย</span>
+          <p>Dara Thai Dancing School</p>
+          <p className="footer__tagline">Maddington, Perth · Western Australia · Est. 2019</p>
         </div>
         <div className="footer__nav">
-          {["Home", "About", "Classes", "Gallery", "Contact"].map((l) => (
+          {["Home", "About", "Classes", "Events", "Contact"].map((l) => (
             <button key={l} className="footer__link" onClick={() => setPage(l)}>{l}</button>
           ))}
         </div>
+        <div className="footer__social-row">
+          <a href="https://www.facebook.com/darathaidancing" target="_blank" rel="noopener noreferrer" className="footer__fb">
+            📘 facebook.com/darathaidancing
+          </a>
+        </div>
         <div className="footer__copy">
-          <p>© 2025 Dara Thai Dancing. All rights reserved.</p>
+          <p>© 2025 Dara Thai Dancing School ดารานาฏศิลป์ไทย · All rights reserved.</p>
         </div>
       </div>
       <div className="footer__ornament">✦ ✦ ✦</div>
@@ -455,12 +521,9 @@ function Footer({ setPage }) {
 // ─── APP ──────────────────────────────────────────────────────────────────────
 export default function App() {
   const [page, setPage] = useState("Home");
-
   useEffect(() => { window.scrollTo({ top: 0, behavior: "smooth" }); }, [page]);
-
-  const pages = { Home, About, Classes, Gallery, Contact };
+  const pages = { Home, About, Classes, Events, Contact };
   const PageComponent = pages[page];
-
   return (
     <div className="app">
       <Nav page={page} setPage={setPage} />
