@@ -1,15 +1,16 @@
-name: Deploy React Site
+name: Deploy React + Vite Site
 
 on:
   push:
     branches:
-      - main
+      - main      # live site
+      - develop   # staging site
 
 env:
   FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
 
 jobs:
-  build:
+  build-and-deploy:
     runs-on: ubuntu-latest
 
     steps:
@@ -17,25 +18,27 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
 
-      # 2. Setup Node.js (20 for Vite)
+      # 2. Setup Node.js 20+
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
           node-version: 20
 
+      # 3. Install dependencies
       - name: Install dependencies
         run: npm install
 
-      - name: Build Vite project
+      # 4. Build Vite project
+      - name: Build React + Vite
         run: npm run build
 
-      - name: Deploy to cPanel
-        uses: SamKirkland/FTP-Deploy-Action@v4.3.0
+      # 5. Deploy via SFTP
+      - name: Deploy to cPanel via SFTP
+        uses: appleboy/scp-action@master
         with:
-          server: ftp.darathaidancing.com.au
+          host: ftp.darathaidancing.com.au
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
-          local-dir: dist/
-          server-dir: ${{ github.ref == 'refs/heads/main' && 'public_html/' || 'public_html/staging/' }}
-          protocol: ftps
-          port: 21
+          port: 22
+          source: "dist/*"
+          target: ${{ github.ref == 'refs/heads/main' && '/public_html/' || '/public_html/staging/' }}
