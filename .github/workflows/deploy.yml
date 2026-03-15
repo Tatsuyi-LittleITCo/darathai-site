@@ -30,14 +30,16 @@ jobs:
         run: npm run build
         
       # 5️⃣ Deploy to staging or live via SFTP
-      - name: Deploy to cPanel
-        uses: appleboy/scp-action@master
+      - name: Deploy to cPanel via FTPS
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.0
         with:
-          host: ${{ secrets.SFTP_HOST }}
-          username: ${{ secrets.SFTP_USERNAME }}
-          password: ${{ secrets.SFTP_PASSWORD }}
-          port: 2683
-          source: "dist/*"
+          server: ftp.darathaidancing.com.au
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          local-dir: dist/
+          protocol: ftps           # cPanel requires FTPS
+          port: 21                 # default FTPS port
           target: ${{ github.ref == 'refs/heads/main' && '/public_html/' || '/public_html/staging/' }}
-          rm: true
-
+          dry-run: false           # set true for testing without uploading
+          
+         
