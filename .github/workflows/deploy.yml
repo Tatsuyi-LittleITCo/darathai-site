@@ -34,12 +34,12 @@ jobs:
         
       # 5️⃣ Deploy to staging or live via SFTP
       - name: Deploy to cPanel
-        uses: SamKirkland/FTP-Deploy-Action@v4.3.0
+        uses: appleboy/scp-action@master
         with:
-          server: ftp.darathaidancing.com.au
+          host: ftp.darathaidancing.com.au
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
-          local-dir: dist/*
+          source: "dist/*"
           server-dir: ${{ github.ref == 'refs/heads/main' && 'public_html/' || 'public_html/staging/' }}
           protocol: ftps
           port: 21
