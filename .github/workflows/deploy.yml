@@ -39,7 +39,7 @@ jobs:
           local-dir: dist/
           protocol: ftps           # cPanel requires FTPS
           port: 21                 # default FTPS port
-          target:  'public_html/
+          target:  'public_html/'
           dry-run: false           # set true for testing without uploading
           
          
