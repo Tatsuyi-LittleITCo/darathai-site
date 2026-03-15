@@ -40,6 +40,7 @@ jobs:
           protocol: ftps           # cPanel requires FTPS
           port: 21                 # default FTPS port
           server-dir: /public_html/
+          dangerous-clean-slate: true
           dry-run: false           # set true for testing without uploading
           
          
