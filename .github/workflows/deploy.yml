@@ -3,8 +3,8 @@ name: Deploy React + Vite Site
 on:
   push:
     branches:
-      - main      # live site
-      - develop   # staging site
+      - main        # live site
+      - develop     # staging site
 
 env:
   FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
