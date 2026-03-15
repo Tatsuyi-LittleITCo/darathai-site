@@ -31,4 +31,17 @@ jobs:
       # 4️⃣ Build Vite React app (npm run build)
       - name: Build Vite app
         run: npm run build
+        
+      # 5️⃣ Deploy to staging or live via SFTP
+      - name: Deploy to cPanel
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.0
+        with:
+          server: ftp.darathaidancing.com.au
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          local-dir: dist/*
+          server-dir: ${{ github.ref == 'refs/heads/main' && 'public_html/' || 'public_html/staging/' }}
+          protocol: ftps
+          port: 21
+          rm: true  # remove old files before uploading
 
