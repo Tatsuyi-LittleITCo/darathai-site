@@ -37,8 +37,8 @@ jobs:
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
           local-dir: dist/
-          server-dir: ${{ github.ref == 'refs/heads/main' && 'public_html/' || 'staging.darathaidancing.com.au/' }}
-          protocol: ftps
-          port: 21
+          server-dir: ${{ github.ref == 'refs/heads/main' && 'public_html/' || 'public_html/staging' }}
+          protocol: sftp
+          port: 22
           dry-run: false
 
