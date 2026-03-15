@@ -13,13 +13,15 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      # 1. Checkout code
       - name: Checkout repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v3.5.3
 
-      - name: Install Node
-        uses: actions/setup-node@v3
+      # 2. Setup Node.js (20 for Vite)
+      - name: Setup Node.js
+        uses: actions/setup-node@v3.12.0
         with:
-          node-version: 18
+          node-version: 20
 
       - name: Install dependencies
         run: npm install
