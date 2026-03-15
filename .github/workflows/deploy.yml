@@ -1,4 +1,4 @@
-name: Deploy React Site
+name: Deploy React + Vite Site
 
 on:
   push:
@@ -10,7 +10,7 @@ env:
   FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
 
 jobs:
-  build:
+  build-and-deploy:
     runs-on: ubuntu-latest
 
     steps:
@@ -18,18 +18,21 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
 
-      # 2. Setup Node.js (20 for Vite)
+      # 2. Setup Node.js 20+
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
           node-version: 20
 
+      # 3. Install dependencies
       - name: Install dependencies
         run: npm install
 
-      - name: Build Vite project
+      # 4. Build Vite project
+      - name: Build React + Vite
         run: npm run build
 
+      # 5. Deploy via SFTP
       - name: Deploy to cPanel
         uses: SamKirkland/FTP-Deploy-Action@v4.3.0
         with:
